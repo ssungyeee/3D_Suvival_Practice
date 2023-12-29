@@ -49,6 +49,7 @@ public class PlayerBaseState : IState
         // 키 입력 처리, event에 += 메서드 해주던 그것과 비슷
         PlayerInput input = stateMachine.Player.Input;
         input.PlayerActions.Movement.canceled += OnMovementCanceled;
+        input.PlayerActions.Interaction.performed += OnInteraction; //
 
         stateMachine.Player.Input.PlayerActions.Attack.performed += OnAttackPerformed;
         stateMachine.Player.Input.PlayerActions.Attack.canceled += OnAttackCanceled;
@@ -58,11 +59,16 @@ public class PlayerBaseState : IState
         // 키 입력 처리, event에 += 메서드 해주던 그것과 비슷
         PlayerInput input = stateMachine.Player.Input;
         input.PlayerActions.Movement.canceled -= OnMovementCanceled;
+        input.PlayerActions.Interaction.performed -= OnInteraction; //
 
         stateMachine.Player.Input.PlayerActions.Attack.performed -= OnAttackPerformed;
         stateMachine.Player.Input.PlayerActions.Attack.canceled -= OnAttackCanceled;
 
 
+    }
+    protected virtual void OnInteraction(InputAction.CallbackContext context)
+    {
+        
     }
     protected virtual void OnMovementCanceled(InputAction.CallbackContext context)
     {

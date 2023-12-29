@@ -16,8 +16,8 @@ public class Player : MonoBehaviour
     public CharacterController Controller { get; private set; }
     public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public Weapon Weapon { get; private set; }
-
     public Health Health { get; private set; }
+    public Interactable Interactable { get; private set; }
 
     private PlayerStateMachine stateMachine;
 
@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
         Controller = GetComponent<CharacterController>();
         ForceReceiver = GetComponent<ForceReceiver>();
         Health = GetComponent<Health>();
+        Interactable = GetComponent<Interactable>();
 
         stateMachine = new PlayerStateMachine(this);
     }
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
                                                           // 그러나 PlayerBaseState.cs 까지 올라가네;; 참조의 늪...
                                                           // 참조 순서가 IState - PlayerBaseState - PlayerGroundedState - PlayerIdleState 진짜 늪이네
         Health.OnDie += OnDie;
+        // Interactable.OnInteractableItem += OnInteractableItem;
     }
 
     private void Update()
@@ -58,4 +60,9 @@ public class Player : MonoBehaviour
         Animator.SetTrigger("Die");
         enabled = false;
     }
+    //void OnInteractableItem()
+    //{
+        
+    //}
+
 }

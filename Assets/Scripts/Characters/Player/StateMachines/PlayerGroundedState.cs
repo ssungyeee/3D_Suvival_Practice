@@ -57,5 +57,9 @@ public class PlayerGroundedState : PlayerBaseState
     {
         stateMachine.ChangeState(stateMachine.AttackState);
     }
+    protected override void OnInteraction(InputAction.CallbackContext context)
+    {
+        Debug.Log("f");
+    }
 
 }
